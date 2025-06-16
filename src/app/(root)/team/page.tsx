@@ -8,9 +8,10 @@ import { CTA } from "@/components";
 
 // Define the type for team member
 type TeamMember = {
+    id?: number;
     name: string;
     role?: string;
-    image: string;
+    image: string | import('next/image').StaticImageData;
     bio: string;
 };
 
