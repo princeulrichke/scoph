@@ -1,10 +1,10 @@
 import { Portfolio } from "@/components";
 import { PortfolioItems } from "@/constants";
-import type { Metadata, ResolvingMetadata, PageProps } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 // Dynamic metadata for Open Graph & Twitter
 export async function generateMetadata(
-  { searchParams }: PageProps,
+  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = searchParams?.id;
