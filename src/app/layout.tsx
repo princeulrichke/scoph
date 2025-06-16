@@ -26,228 +26,43 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SCOPH-KU - Standing Committee on Public Health | Kenyatta University",
-  description: "The standing committee on public health - Kenyatta University (SCOPH-KU) website serves as the official digital platform for the SCOPH local office under the Medical Students Association of Kenya (MSAKE) and the International Federation of Medical Students' Associations (IFMSA). SCOPH-KU is a dynamic community of passionate medical students in Kenyatta University committed to raising awareness, initiating impactful health campaigns, and fostering a culture of proactive public health advocacy within and beyond Kenyatta University. Through innovative collaborations, educational outreach, and global networking, the committee addresses key public health concerns including communicable diseases, non-communicable diseases, mental health, and health equity.",
-  
+  description: "Official website of SCOPH-KU — a vibrant community of Kenyatta University medical students driving public health awareness, global health campaigns, and advocacy. Affiliated with MSAKE and IFMSA.",
   metadataBase: new URL("https://scoph.vercel.app"),
-  
-  // Icons Configuration (using existing logo)
+
+  // Icons
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "https://scoph.vercel.app/logo.png",
+    shortcut: "https://scoph.vercel.app/logo.png",
+    apple: "https://scoph.vercel.app/logo.png",
     other: {
       rel: "apple-touch-icon-precomposed",
-      url: "/logo.png",
-    }
+      url: "https://scoph.vercel.app/logo.png",
+    },
   },
 
-  // Enhanced Keywords
+  // Keywords
   keywords: [
-    "SCOPH-KU",
-    "Kenyatta University",
-    "Public Health",
-    "Medical Students Association of Kenya",
-    "MSAKE",
-    "IFMSA",
-    "International Federation of Medical Students Associations",
-    "Health Campaigns",
-    "Health Advocacy",
-    "Global Health",
-    "Student Involvement",
-    "Capacity Building",
-    "Medical Students Kenya",
-    "Health Education",
-    "Community Health",
-    "Preventive Medicine",
-    "Health Promotion",
-    "Medical Training",
-    "Healthcare Leadership",
-    "Public Health Initiatives",
-    "Health Awareness",
-    "Medical Research",
-    "Healthcare Policy",
-    "Health Equity",
-    "Communicable Diseases",
-    "Non-communicable Diseases",
-    "Mental Health",
-    "HIV/AIDS Awareness",
-    "Malaria Prevention",
-    "Breast Cancer Awareness",
-    "Health Partnerships",
-    "Medical Education",
-    "Healthcare Innovation",
-    "Student Organizations",
-    "Health Outreach",
-    "Medical Volunteering"
+    "SCOPH-KU", "Kenyatta University", "Public Health", "Medical Students", "MSAKE", "IFMSA",
+    "Global Health", "Health Campaigns", "Student Leadership", "Health Education",
+    "Mental Health", "Communicable Diseases", "Non-communicable Diseases",
+    "Health Equity", "Advocacy", "Kenya Medical Students", "Medical Outreach", "SCOPH"
   ],
 
-  // Authors and Creator Information
+  // Authors & Attribution
   authors: [
     {
       name: "SCOPH-KU Team",
       url: "https://scoph.vercel.app/about",
     },
     {
-      name: "Medical Students Association of Kenya",
-      url: "https://scoph.vercel.app",
-    }
+      name: "Medical Students Association of Kenya (MSAKE)",
+      url: "https://msake.org",
+    },
   ],
   creator: "SCOPH-KU | Ulrich Consolidated",
   publisher: "Standing Committee on Public Health - Kenyatta University",
 
-  // Open Graph Configuration (using existing logo)
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: ["en_KE", "sw_KE"], // English Kenya and Swahili Kenya
-    title: "SCOPH-KU | Standing Committee on Public Health - Kenyatta University",
-    description: "Join SCOPH-KU, a dynamic community of medical students at Kenyatta University committed to public health advocacy, health campaigns, and global health initiatives. Part of MSAKE and IFMSA networks.",
-    url: "https://scoph.vercel.app",
-    siteName: "SCOPH-KU",
-    images: [
-      {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
-        alt: "SCOPH-KU - Standing Committee on Public Health at Kenyatta University. Medical students committed to health advocacy and global health initiatives.",
-      }
-    ],
-    countryName: "Kenya",
-  },
-
-  // Twitter/X Card Configuration (using existing logo)
-  twitter: {
-    card: "summary_large_image",
-    site: "@SCOPHKU", // Replace with actual Twitter handle
-    creator: "@SCOPHKU", // Replace with actual Twitter handle
-    title: "SCOPH-KU | Public Health Advocacy at Kenyatta University",
-    description: "Dynamic community of medical students committed to health campaigns, global health initiatives, and public health advocacy. Join SCOPH-KU today! 🏥✨",
-    images: ["/logo.png"],
-  },
-
-  // Additional Platform-Specific Meta Tags
-  other: {
-    // LinkedIn
-    "linkedin:owner": "SCOPH-KU",
-    
-    // WhatsApp (using existing logo)
-    "whatsapp:title": "SCOPH-KU | Public Health at Kenyatta University",
-    "whatsapp:description": "Join medical students committed to health advocacy and global health initiatives 🏥",
-    "whatsapp:image": "/logo.png",
-    
-    // Telegram (using existing logo)
-    "telegram:channel": "@scophku", // Replace with actual Telegram channel
-    "telegram:title": "SCOPH-KU Updates",
-    "telegram:description": "Latest updates from Standing Committee on Public Health - Kenyatta University",
-    "telegram:image": "/logo.png",
-    
-    // Pinterest (using existing logo)
-    "pinterest:title": "SCOPH-KU Health Campaigns",
-    "pinterest:description": "Inspiring public health initiatives by medical students at Kenyatta University",
-    "pinterest:image": "/logo.png",
-    "pinterest:id": "scophku", // Replace with actual Pinterest username
-    
-    // Instagram (using existing logo)
-    "instagram:title": "SCOPH-KU | Health Advocacy",
-    "instagram:description": "Medical students making a difference in public health 🏥✨ #PublicHealth #MedicalStudents #KenyattaUniversity",
-    "instagram:image": "/logo.png",
-    
-    // TikTok (using existing logo)
-    "tiktok:title": "SCOPH-KU Health Campaigns",
-    "tiktok:description": "Medical students at Kenyatta University leading health advocacy initiatives 🏥",
-    "tiktok:image": "/logo.png",
-    
-    // YouTube (using existing logo)
-    "youtube:title": "SCOPH-KU Channel",
-    "youtube:description": "Educational content and health campaigns by SCOPH-KU medical students",
-    "youtube:image": "/logo.png",
-    
-    // Discord (using existing logo)
-    "discord:title": "SCOPH-KU Community",
-    "discord:description": "Join our Discord community for public health discussions and updates",
-    "discord:image": "/logo.png",
-    
-    // WeChat (using existing logo)
-    "wechat:title": "SCOPH-KU公共卫生委员会",
-    "wechat:description": "肯雅塔大学医学生公共卫生倡导社区",
-    "wechat:image": "/logo.png",
-    
-    // Apple-specific
-    "apple-mobile-web-app-title": "SCOPH-KU",
-    "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "default",
-    
-    // Microsoft-specific (using existing logo)
-    "msapplication-TileColor": "#ea580c",
-    "msapplication-TileImage": "/logo.png",
-    "msapplication-navbutton-color": "#ea580c",
-    "msapplication-starturl": "/",
-    "msapplication-window": "width=1024;height=768",
-    
-    // Theme colors for different platforms
-    "theme-color": "#ea580c",
-    
-    // Geo-tagging
-    "geo.region": "KE-30", // Nairobi County, Kenya
-    "geo.placename": "Nairobi, Kenya",
-    "geo.position": "-1.2921;36.8219", // Nairobi coordinates
-    "ICBM": "-1.2921, 36.8219",
-    
-    // Language and locale
-    "language": "en-KE",
-    "content-language": "en-KE",
-    
-    // RSS/Atom feeds
-    "alternate": "application/rss+xml",
-    "rss": "/feed.xml",
-    
-    // Schema.org structured data reference
-    "structured-data": "Organization, EducationalOrganization, MedicalOrganization",
-    
-    // Rating and content classification
-    "rating": "General",
-    "distribution": "Global",
-    "revisit-after": "7 days",
-    "expires": "never",
-    
-    // Copyright and ownership
-    "copyright": "© 2025 SCOPH-KU, Kenyatta University",
-    "owner": "Standing Committee on Public Health - Kenyatta University",
-    
-    // Contact information
-    "contact": "info@scoph.vercel.app", // Replace with actual contact email
-    "reply-to": "info@scoph.vercel.app",
-    
-    // Mobile optimization
-    "format-detection": "telephone=no",
-    "mobile-web-app-capable": "yes",
-    "mobile-web-app-status-bar-style": "default",
-    
-    // Security and privacy
-    "referrer": "origin-when-cross-origin",
-    "permissions-policy": "camera=(), microphone=(), geolocation=()",
-    
-    // Performance hints
-    "dns-prefetch": "//fonts.googleapis.com",
-    "preconnect": "//fonts.gstatic.com",
-  },
-
-  // Robots configuration
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-
-  // Canonical URL
+  // Canonical
   alternates: {
     canonical: "https://scoph.vercel.app",
     languages: {
@@ -256,20 +71,97 @@ export const metadata: Metadata = {
     },
   },
 
-  // Archive and historical versions
-  archives: ["https://scoph.vercel.app/archive"],
-
-  // Category classification
-  category: "Health, Education, Medical, Student Organization",
-
-  // App-specific configurations
-  appLinks: {
-    web: {
-      url: "https://scoph.vercel.app",
-      should_fallback: true,
-    },
+  // Open Graph (Facebook, WhatsApp, LinkedIn)
+  openGraph: {
+    type: "website",
+    locale: "en_KE",
+    url: "https://scoph.vercel.app",
+    title: "SCOPH-KU | Standing Committee on Public Health - Kenyatta University",
+    description: "Join SCOPH-KU, a dynamic community of medical students at Kenyatta University dedicated to public health advocacy, campaigns, and global health collaboration.",
+    siteName: "SCOPH-KU",
+    images: [
+      {
+        url: "https://scoph.vercel.app/og-image.png", // Use a banner-like image (recommended: 1200x630px)
+        width: 1200,
+        height: 630,
+        alt: "SCOPH-KU: Standing Committee on Public Health at Kenyatta University",
+      },
+    ],
   },
 
+  // Twitter/X Card
+  twitter: {
+    card: "summary_large_image",
+    site: "@SCOPHKU",
+    creator: "@SCOPHKU",
+    title: "SCOPH-KU | Public Health Advocacy at Kenyatta University",
+    description: "Medical students at Kenyatta University leading impactful public health campaigns and initiatives. Partnered with MSAKE & IFMSA.",
+    images: ["https://scoph.vercel.app/og-image.png"],
+  },
+
+  // Platform-specific meta tags
+  other: {
+    // WhatsApp (uses Open Graph fallback)
+    "whatsapp:title": "SCOPH-KU | Public Health at Kenyatta University",
+    "whatsapp:description": "Kenyatta University medical students advancing global health and local awareness.",
+    "whatsapp:image": "https://scoph.vercel.app/og-image.png",
+
+    // Telegram
+    "telegram:title": "SCOPH-KU - Public Health Initiatives",
+    "telegram:description": "Join SCOPH-KU for impactful medical student-led campaigns and health advocacy.",
+    "telegram:image": "https://scoph.vercel.app/og-image.png",
+
+    // LinkedIn
+    "linkedin:title": "SCOPH-KU | Public Health Committee",
+    "linkedin:description": "Official page of SCOPH-KU - Educating and engaging in community health at Kenyatta University.",
+    "linkedin:image": "https://scoph.vercel.app/og-image.png",
+
+    // Instagram (fallback, not officially supported)
+    "instagram:title": "SCOPH-KU | Health Advocacy",
+    "instagram:description": "Follow SCOPH-KU for updates on public health campaigns and student initiatives.",
+    "instagram:image": "https://scoph.vercel.app/og-image.png",
+
+    // Pinterest
+    "pinterest:title": "SCOPH-KU Health Campaigns",
+    "pinterest:description": "Promoting public health with student-led initiatives at Kenyatta University.",
+    "pinterest:image": "https://scoph.vercel.app/og-image.png",
+
+    // TikTok
+    "tiktok:title": "SCOPH-KU | Health Awareness",
+    "tiktok:description": "Medical students leading health awareness and education campaigns.",
+    "tiktok:image": "https://scoph.vercel.app/og-image.png",
+
+    // YouTube
+    "youtube:title": "SCOPH-KU Channel",
+    "youtube:description": "Watch SCOPH-KU’s health outreach and educational content.",
+    "youtube:image": "https://scoph.vercel.app/og-image.png",
+
+    // Discord
+    "discord:title": "SCOPH-KU Community",
+    "discord:description": "Connect with fellow students passionate about public health and medicine.",
+    "discord:image": "https://scoph.vercel.app/og-image.png",
+
+    // Apple
+    "apple-mobile-web-app-title": "SCOPH-KU",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+
+    // Microsoft
+    "msapplication-TileColor": "#ea580c",
+    "msapplication-TileImage": "https://scoph.vercel.app/logo.png",
+
+    // Mobile optimization
+    "theme-color": "#ea580c",
+    "format-detection": "telephone=no",
+
+    // SEO Enhancers
+    "robots": "index, follow",
+    "googlebot": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "referrer": "origin-when-cross-origin",
+    "rating": "General",
+    "revisit-after": "7 days",
+    "distribution": "Global",
+  },
   // Verification and analytics (commented out until you have actual verification codes)
   // verification: {
   //   google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION",
