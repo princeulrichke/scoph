@@ -2,10 +2,10 @@ import { Portfolio } from "@/components";
 import { PortfolioItems } from "@/constants";
 import type { Metadata } from "next";
 
-// NO PageProps anywhere
+// Do NOT use PageProps anywhere in your codebase!
 
 export async function generateMetadata(
-  { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }
+  { searchParams }: { searchParams: Record<string, string | string[] | undefined> }
 ): Promise<Metadata> {
   const id = searchParams?.id;
   let item = null;
