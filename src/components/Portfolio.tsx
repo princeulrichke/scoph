@@ -1,7 +1,7 @@
 'use client'
 
 import { PortfolioCategories, PortfolioItems } from "@/constants";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +18,28 @@ interface PortfolioItem {
     images: any[]; // Use 'any[]' to handle both StaticImageData and string arrays
 }
 
-export default function Portfolio() {
+// Loading component for Suspense fallback
+function PortfolioLoading() {
+    return (
+        <section className="py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="px-4 py-2 rounded-lg bg-gray-200 animate-pulse h-10 w-20"></div>
+                    ))}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                        <div key={i} className="w-full h-64 bg-gray-200 rounded-lg animate-pulse"></div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// Create a separate component for the main portfolio logic
+function PortfolioContent() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -381,5 +402,14 @@ export default function Portfolio() {
                 </div>
             )}
         </>
+    );
+}
+
+// Main Portfolio component with Suspense wrapper
+export default function Portfolio() {
+    return (
+        <Suspense fallback={<PortfolioLoading />}>
+            <PortfolioContent />
+        </Suspense>
     );
 }
