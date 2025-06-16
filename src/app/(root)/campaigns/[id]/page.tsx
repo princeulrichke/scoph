@@ -2,17 +2,15 @@ import { Campaigns } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { type Metadata } from 'next';
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const id = params.id;
-
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  // Await the params since they're now a Promise in Next.js 15
+  const { id } = await params;
+  
   if (!id) {
     redirect('/campaigns');
   }
@@ -31,13 +29,13 @@ export default async function Page({ params }: PageProps) {
   if (!campaignDetails) {
     redirect('/campaigns');
   }
+
   return (
     <div className="container mx-auto px-4 py-12 mt-16">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-6">
           {campaignDetails.name}
         </h1>
-
         <div className="relative w-full h-80 rounded-xl overflow-hidden mb-8">
           <Image
             src={campaignDetails.image}
@@ -50,24 +48,18 @@ export default async function Page({ params }: PageProps) {
             {campaignDetails.date}
           </div>
         </div>
-
         <div className="prose prose-orange max-w-none">
           <h2 className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="text-gray-700 mb-6">{campaignDetails.overview}</p>
-
           <h2 className="text-2xl font-semibold mb-4">Description</h2>
           <p className="text-gray-700 mb-6">{campaignDetails.description}</p>
-
           <h2 className="text-2xl font-semibold mb-4">Collaboration</h2>
           <p className="text-gray-700 mb-6">{campaignDetails.collaboration}</p>
-
           <h2 className="text-2xl font-semibold mb-4">Activities</h2>
           <p className="text-gray-700 mb-6">{campaignDetails.activities}</p>
-
           <h2 className="text-2xl font-semibold mb-4">Impact</h2>
           <p className="text-gray-700 mb-6">{campaignDetails.impact}</p>
         </div>
-
         <div className="mt-10 border-t border-gray-200 pt-8">
           <Link
             href="/campaigns"
