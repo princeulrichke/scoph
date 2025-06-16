@@ -3,13 +3,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const page = async ({ params }: { params: { id: string } }) => {
+// Correct typing for App Router dynamic route props
+interface CampaignPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function Page({ params }: CampaignPageProps) {
   const id = params.id;
 
   if (!id) {
     redirect('/campaigns');
   }
 
+  // Fetch campaign details
   const fetchCampaignDetails = (campaignId: string) => {
     if (Array.isArray(Campaigns)) {
       return Campaigns.find(campaign => campaign.id === campaignId) || null;
@@ -19,7 +27,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     return null;
   };
 
-  const campaignDetails = await fetchCampaignDetails(id);
+  const campaignDetails = fetchCampaignDetails(id);
 
   if (!campaignDetails) {
     redirect('/campaigns');
@@ -28,7 +36,10 @@ const page = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="container mx-auto px-4 py-12 mt-16">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-6">{campaignDetails.name}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-6">
+          {campaignDetails.name}
+        </h1>
+
         <div className="relative w-full h-80 rounded-xl overflow-hidden mb-8">
           <Image
             src={campaignDetails.image}
@@ -70,6 +81,4 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
     </div>
   );
-};
-
-export default page;
+}
