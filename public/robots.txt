@@ -18,3 +18,4 @@ Allow: /about
 Allow: /events
 Allow: /campaigns
 Allow: /contact
+Allow: /portfolio
