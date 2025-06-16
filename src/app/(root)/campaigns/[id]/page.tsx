@@ -3,24 +3,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-// Corrected typing for App Router dynamic route props
-interface CampaignPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function Page({ params }: CampaignPageProps) {
+export default async function Page({
+  params,
+}: {
+  params: { id: string };
+}) {
   const id = params.id;
 
   if (!id) {
     redirect('/campaigns');
   }
 
-  // Fetch campaign details
   const fetchCampaignDetails = (campaignId: string) => {
     if (Array.isArray(Campaigns)) {
-      return Campaigns.find(campaign => campaign.id === campaignId) || null;
+      return Campaigns.find((campaign) => campaign.id === campaignId) || null;
     } else if (typeof Campaigns === 'object' && Campaigns !== null) {
       return Campaigns[campaignId] || null;
     }
