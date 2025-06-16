@@ -2,7 +2,8 @@ import { Portfolio } from "@/components";
 import { PortfolioItems } from "@/constants";
 import type { Metadata } from "next";
 
-// Dynamic metadata for Open Graph & Twitter
+// NO PageProps anywhere
+
 export async function generateMetadata(
   { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }
 ): Promise<Metadata> {
@@ -85,7 +86,6 @@ export async function generateMetadata(
   };
 }
 
-// The page itself
 export default function Page() {
   return (
     <>
