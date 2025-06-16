@@ -6,12 +6,20 @@ import { TeamMembers } from "@/constants";
 import { X } from "lucide-react";
 import { CTA } from "@/components";
 
+// Define the type for team member
+type TeamMember = {
+    name: string;
+    role?: string;
+    image: string;
+    bio: string;
+};
+
 export default function TeamPage() {
-    const [selectedMember, setSelectedMember] = useState(null);
+    const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Improved modal handling
-    const openModal = (member) => {
+    // Improved modal handling with proper typing
+    const openModal = (member: TeamMember) => {
         setSelectedMember(member);
         setIsModalOpen(true);
         // Prevent background scrolling when modal is open
@@ -26,7 +34,7 @@ export default function TeamPage() {
     
     // Close modal on escape key press
     useEffect(() => {
-        const handleKeyDown = (e) => {
+        const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape' && isModalOpen) {
                 closeModal();
             }
@@ -35,6 +43,7 @@ export default function TeamPage() {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isModalOpen]);
+
     return (
         <>
             <section className="relative flex items-center justify-center overflow-hidden mx-auto px-4 py-8">
