@@ -7,6 +7,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
+// Define types for better type safety
+interface PortfolioItem {
+    id: string | number;
+    title: string;
+    date: string;
+    category: string;
+    description: string;
+    image?: string;
+    images?: string[];
+    outcomes?: string[];
+}
+
+interface PortfolioCategory {
+    name: string;
+}
+
 export default function Portfolio() {
     const router = useRouter();
     const pathname = usePathname();
@@ -14,12 +30,12 @@ export default function Portfolio() {
     
     // Get the current page from URL or default to 1
     const currentPage = parseInt(searchParams.get('page') || '1', 10);
-    const [activeFilter, setActiveFilter] = useState(searchParams.get('category') || "all");
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeFilter, setActiveFilter] = useState<string>(searchParams.get('category') || "all");
+    const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     
     // Helper function to get item image 
-    const getItemImage = (item) => {
+    const getItemImage = (item: PortfolioItem): string => {
         if (Array.isArray(item.images) && item.images.length > 0) {
             return item.images[0];
         }
@@ -39,7 +55,7 @@ export default function Portfolio() {
         if (itemId && !isModalOpen) {
             // Find the item in the portfolio items
             const id = isNaN(Number(itemId)) ? itemId : Number(itemId);
-            const item = PortfolioItems.find(item => item.id === id);
+            const item = PortfolioItems.find((item: PortfolioItem) => item.id === id);
             
             if (item) {
                 // Open the modal with this item
@@ -51,7 +67,7 @@ export default function Portfolio() {
                 if (typeof window !== 'undefined') {
                     const currentUrl = new URL(window.location.href);
                     currentUrl.searchParams.delete('id');
-                    window.history.replaceState({}, '', currentUrl);
+                    window.history.replaceState({}, '', currentUrl.toString());
                 }
             }
         }
@@ -61,7 +77,7 @@ export default function Portfolio() {
 
     // Filter items based on active category
     const filteredItems = useMemo(() => {
-        return PortfolioItems.filter(item => 
+        return PortfolioItems.filter((item: PortfolioItem) => 
             activeFilter === "all" || item.category === activeFilter
         );
     }, [activeFilter]);
@@ -77,14 +93,14 @@ export default function Portfolio() {
     }, [currentPage, filteredItems]);
     
     // Handle category filter change
-    const filterPortfolioItems = (category) => {
+    const filterPortfolioItems = (category: string) => {
         // Reset to page 1 when changing filters
         updateUrlParams(category, 1);
         setActiveFilter(category);
     };
     
     // Handle URL parameter updates
-    const updateUrlParams = (category = activeFilter, page = currentPage) => {
+    const updateUrlParams = (category: string = activeFilter, page: number = currentPage) => {
         const params = new URLSearchParams();
         
         // Only add parameters if they have non-default values
@@ -98,14 +114,14 @@ export default function Portfolio() {
     };
     
     // Utility function for sharing a specific item
-    const sharePortfolioItem = (item) => {
+    const sharePortfolioItem = (item: PortfolioItem): string => {
         // Generate a shareable link that includes the item ID
         const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
         return `${baseUrl}/portfolio?id=${item.id}`;
     };
     
     // Modal functions
-    const openModal = (index) => {
+    const openModal = (index: number) => {
         const itemIndex = (currentPage - 1) * ITEMS_PER_PAGE + index;
         const item = filteredItems[itemIndex];
         setSelectedItem(item);
@@ -121,7 +137,30 @@ export default function Portfolio() {
         if (typeof window !== 'undefined' && searchParams.get('id')) {
             const currentUrl = new URL(window.location.href);
             currentUrl.searchParams.delete('id');
-            window.history.replaceState({}, '', currentUrl);
+            window.history.replaceState({}, '', currentUrl.toString());
+        }
+    };
+
+    // Handle copy to clipboard with error handling
+    const handleCopyLink = async (item: PortfolioItem) => {
+        try {
+            await navigator.clipboard.writeText(sharePortfolioItem(item));
+            alert('Link copied to clipboard!');
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = sharePortfolioItem(item);
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Link copied to clipboard!');
+            } catch (fallbackErr) {
+                console.error('Fallback copy failed: ', fallbackErr);
+                alert('Failed to copy link');
+            }
+            document.body.removeChild(textArea);
         }
     };
 
@@ -130,7 +169,7 @@ export default function Portfolio() {
             <section className="py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
-                        {PortfolioCategories.map((category) => (
+                        {PortfolioCategories.map((category: PortfolioCategory) => (
                             <button
                                 key={category.name}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition duration-300 cursor-pointer ${
@@ -152,7 +191,7 @@ export default function Portfolio() {
                     ) : (
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {currentItems.map((item, index) => (
+                                {currentItems.map((item: PortfolioItem, index: number) => (
                                     <div key={item.id} className="relative group cursor-pointer" onClick={() => openModal(index)}>
                                         <Image
                                             src={getItemImage(item)}
@@ -188,7 +227,7 @@ export default function Portfolio() {
                                     </button>
                                     
                                     <div className="flex items-center space-x-1">
-                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page: number) => (
                                             <button
                                                 key={page}
                                                 onClick={() => updateUrlParams(activeFilter, page)}
@@ -227,7 +266,7 @@ export default function Portfolio() {
              
             {isModalOpen && selectedItem && (
                 <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center bg-black/75" onClick={closeModal}>
-                    <div className="bg-white rounded-lg max-w-4xl w-full my-8 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+                    <div className="bg-white rounded-lg max-w-4xl w-full my-8 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
                         <div className="sticky top-0 bg-white p-6 pb-4 border-b border-gray-100 z-10 flex justify-between items-center">
                             <h2 className="text-2xl font-bold text-gray-800">{selectedItem.title}</h2>
                             <button 
@@ -277,7 +316,7 @@ export default function Portfolio() {
                                 <div className="mb-8">
                                     <h3 className="text-xl font-semibold mb-3">Outcomes</h3>
                                     <ul className="list-disc pl-5 space-y-2">
-                                        {selectedItem.outcomes.map((outcome, i) => (
+                                        {selectedItem.outcomes.map((outcome: string, i: number) => (
                                             <li key={i} className="text-gray-700">{outcome}</li>
                                         ))}
                                     </ul>
@@ -288,7 +327,7 @@ export default function Portfolio() {
                                 <div className="mb-8">
                                     <h3 className="text-xl font-semibold mb-3">Gallery</h3>
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                        {selectedItem.images.slice(1).map((image, index) => (
+                                        {selectedItem.images.slice(1).map((image: string, index: number) => (
                                             <div key={index} className="relative h-48 rounded-lg overflow-hidden">
                                                 <Image 
                                                     src={image} 
@@ -306,10 +345,7 @@ export default function Portfolio() {
                                 <h3 className="text-lg font-semibold mb-3">Share this item</h3>
                                 <div className="flex flex-wrap gap-3">
                                     <button
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(sharePortfolioItem(selectedItem));
-                                            alert('Link copied to clipboard!');
-                                        }}
+                                        onClick={() => handleCopyLink(selectedItem)}
                                         className="flex items-center px-3 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200 transition-colors"
                                         aria-label="Copy link to clipboard"
                                     >
