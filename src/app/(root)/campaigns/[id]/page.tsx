@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-// Correct typing for App Router dynamic route props
+// Corrected typing for App Router dynamic route props
 interface CampaignPageProps {
   params: {
     id: string;
