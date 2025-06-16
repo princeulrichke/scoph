@@ -2,12 +2,15 @@ import { Campaigns } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { type Metadata } from 'next';
 
-export default async function Page({
-  params,
-}: {
-  params: { id: string };
-}) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function Page({ params }: PageProps) {
   const id = params.id;
 
   if (!id) {
@@ -28,7 +31,6 @@ export default async function Page({
   if (!campaignDetails) {
     redirect('/campaigns');
   }
-
   return (
     <div className="container mx-auto px-4 py-12 mt-16">
       <div className="max-w-4xl mx-auto">
