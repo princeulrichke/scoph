@@ -24,7 +24,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
   title: "SCOPH-KU - Standing Committee on Public Health | Kenyatta University",
   description: "The standing committee on public health - Kenyatta University (SCOPH-KU) website serves as the official digital platform for the SCOPH local office under the Medical Students Association of Kenya (MSAKE) and the International Federation of Medical Students' Associations (IFMSA). SCOPH-KU is a dynamic community of passionate medical students in Kenyatta University committed to raising awareness, initiating impactful health campaigns, and fostering a culture of proactive public health advocacy within and beyond Kenyatta University. Through innovative collaborations, educational outreach, and global networking, the committee addresses key public health concerns including communicable diseases, non-communicable diseases, mental health, and health equity.",
@@ -126,7 +125,6 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
 
-
   // Additional Platform-Specific Meta Tags
   other: {
     // LinkedIn
@@ -178,7 +176,6 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "SCOPH-KU",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-touch-fullscreen": "yes",
     
     // Microsoft-specific (using existing logo)
     "msapplication-TileColor": "#ea580c",
@@ -189,8 +186,6 @@ export const metadata: Metadata = {
     
     // Theme colors for different platforms
     "theme-color": "#ea580c",
-    "msapplication-navbutton-color": "#ea580c",
-    "apple-mobile-web-app-status-bar-style": "#ea580c",
     
     // Geo-tagging
     "geo.region": "KE-30", // Nairobi County, Kenya
@@ -205,8 +200,6 @@ export const metadata: Metadata = {
     // RSS/Atom feeds
     "alternate": "application/rss+xml",
     "rss": "/feed.xml",
-    
-    
     
     // Schema.org structured data reference
     "structured-data": "Organization, EducationalOrganization, MedicalOrganization",
@@ -263,8 +256,6 @@ export const metadata: Metadata = {
     },
   },
 
-
-
   // Archive and historical versions
   archives: ["https://scoph.vercel.app/archive"],
 
@@ -273,22 +264,19 @@ export const metadata: Metadata = {
 
   // App-specific configurations
   appLinks: {
-    
     web: {
       url: "https://scoph.vercel.app",
       should_fallback: true,
     },
   },
 
-  
-
-  // Verification and analytics
+  // Verification and analytics (commented out until you have actual verification codes)
   // verification: {
   //   google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION",
   //   bing: "YOUR_BING_WEBMASTER_VERIFICATION",
   //   yahoo: "YOUR_YAHOO_SITE_EXPLORER_VERIFICATION",
   //   yandex: "YOUR_YANDEX_WEBMASTER_VERIFICATION",
-  //   me: ["mailto:info@scoph.vercel.app", "https://scoph.vercel.app"], // Replace with actual contact
+  //   me: ["mailto:info@scoph.vercel.app", "https://scoph.vercel.app"],
   // },
 };
 
